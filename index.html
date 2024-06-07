@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Prompt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffcce0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ff99cc;
+            border-radius: 10px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            background-color: white;
+            border: 2px solid #ff99cc;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .emoji {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            animation: explode 5s forwards;
+        }
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(0) translate(0, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) translate(calc(var(--x) * 10), calc(var(--y) * 10));
+            }
+        }
+        .popup {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff66b2;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            font-size: 24px;
+            display: none;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="popup" id="popup">I love youuuu!!!💗</div>
+        <h1>Enter your nickname to access the website</h1>
+        <input type="text" id="nickname" placeholder="Nickname">
+        <br>
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const nickname = document.getElementById('nickname').value;
+            if (nickname.toLowerCase() === 'toto') {
+                showPopup();
+                createExplodingEmojis();
+                setTimeout(() => {
+                    window.location.href = 'main.html'; // Redirects to the main page after 5 seconds
+                }, 5000);
+            } else {
+                alert('Incorrect nickname. Please try again.');
+            }
+        }
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        }
+
+        function createExplodingEmojis() {
+            const emojis = ['💗', '💕', '💗', '💘', '💗', '💗', '❤', '🌟', '💕', '✨', '💞', '💓', '💝', '💋'];
+            const container = document.querySelector('body');
+            for (let i = 0; i < 500; i++) {
+                let emoji = document.createElement('div');
+                emoji.className = 'emoji';
+                emoji.style.setProperty('--x', `${Math.random() * 1000 - 500}%`);
+                emoji.style.setProperty('--y', `${Math.random() * 1000 - 500}%`);
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                container.appendChild(emoji);
+            }
+        }
+    </script>
+</body>
+</html>
