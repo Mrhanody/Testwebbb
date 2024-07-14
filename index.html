@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -112,3 +112,169 @@
     </script>
 </body>
 </html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Timer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffe6f2;
+            font-family: 'Pacifico', cursive;
+            color: #ff66b2;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        .container {
+            border: 5px solid #ff66b2;
+            border-radius: 15px;
+            padding: 30px;
+            background-color: #fff0f5;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: "💖";
+            position: absolute;
+            animation: heartPop 1.5s infinite;
+            font-size: 1.5em;
+            top: -10px;
+            right: -30px;
+        }
+
+        #timer {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #timer span {
+            display: inline-block;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #ffb3d9;
+            margin: 5px;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .emoji {
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .popup {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #ff66b2;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .container:hover .popup {
+            display: block;
+        }
+
+        .additional-text {
+            margin-top: 40px;
+        }
+
+        .additional-text p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Our Love Timer</h1>
+        <div class="popup">You're my everything! 💕</div>
+        <p>We've been together for:</p>
+        <div id="timer">
+            <span id="years"></span> years 
+            <span id="months"></span> months 
+            <span id="days"></span> days 
+            <span id="hours"></span> hours 
+            <span id="minutes"></span> minutes 
+            <span id="seconds"></span> seconds
+        </div>
+    </div>
+    <div class="additional-text">
+        <p>💑 Every moment with you is a treasure. I love you more every day.</p>
+        <p>🌸 You make my life beautiful, just like a blooming flower.</p>
+        <p>✨ Together, we can conquer the world. You're my star!</p>
+    </div>
+    <script>
+        const startDate = new Date("2024-02-18T02:16:00");
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            const now = new Date();
+            const elapsedTime = now - startDate;
+
+            const seconds = Math.floor((elapsedTime / 1000) % 60);
+            const minutes = Math.floor((elapsedTime / 1000 / 60) % 60);
+            const hours = Math.floor((elapsedTime / 1000 / 60 / 60) % 24);
+            const days = Math.floor((elapsedTime / 1000 / 60 / 60 / 24) % 30);
+            const months = Math.floor((elapsedTime / 1000 / 60 / 60 / 24 / 30) % 12);
+            const years = Math.floor(elapsedTime / 1000 / 60 / 60 / 24 / 365);
+
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
+
+ 
